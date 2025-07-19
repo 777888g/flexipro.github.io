@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexiPro - Your Professional Hub</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Neo Colors - Light Mode Variables (Default) */
+        :root {
+            --primary-color: #007bff; /* Bright Blue */
+            --primary-color-light: #4c9dff;
+            --primary-color-dark: #0056b3;
+
+            --secondary-color: #6c757d; /* Muted Grey */
+            --secondary-color-dark: #5a6268;
+
+            --accent-color: #28a745; /* Green Accent */
+
+            --background-color: #f8f9fa; /* Light Grey Background */
+            --card-bg-color: #ffffff; /* White Cards */
+            --element-bg-color: #f0f2f5; /* Lighter background for elements like blog posts */
+
+            --header-bg-color: #ffffff;
+            --header-text-color: #343a40;
+            --logo-color: var(--primary-color);
+            --nav-link-color: #495057;
+
+            --text-color: #343a40; /* Dark Grey Text */
+            --heading-color: #212529; /* Even Darker Heading */
+            --text-muted-color: #6c757d;
+
+            --border-color: #dee2e6;
+            --box-shadow-color: rgba(0, 0, 0, 0.1);
+
+            --ad-bg-color: #fff3cd; /* Light Yellow for Ads */
+            --ad-border-color: #ffeeba;
+            --ad-text-color: #856404;
+
+            --footer-bg-color: #343a40;
+            --footer-text-color: #f8f9fa;
+
+            --dropdown-bg-color: #ffffff;
+            --dropdown-text-color: #343a40;
+
+            --switch-bg-color: #ccc;
+            --switch-handle-color: white;
+        }
+
+        /* Neo Colors - Dark Mode Variables */
+        body.dark-mode {
+            --primary-color: #6a0dad; /* Deep Purple */
+            --primary-color-light: #9a53d9;
+            --primary-color-dark: #4b0082;
+
+            --secondary-color: #8b8b8b; /* Lighter Grey */
+            --secondary-color-dark: #7a7a7a;
+
+            --accent-color: #4CAF50; /* Green Accent (similar to light mode but adapts) */
+
+            --background-color: #1a1a2e; /* Dark Blue/Purple Background */
+            --card-bg-color: #16213e; /* Slightly Lighter Dark Card */
+            --element-bg-color: #0f3460; /* Darker background for elements */
+
+            --header-bg-color: #0f3460;
+            --header-text-color: #f8f9fa;
+            --logo-color: var(--primary-color-light);
+            --nav-link-color: #e9ecef;
+
+            --text-color: #e0e0e0; /* Light Grey Text */
+            --heading-color: #ffffff; /* White Heading */
+            --text-muted-color: #b0b0b0;
+
+            --border-color: #3a3a4e;
+            --box-shadow-color: rgba(0, 0, 0, 0.3);
+
+            --ad-bg-color: #3a3a4e; /* Darker for Ads */
+            --ad-border-color: #4a4a5e;
+            --ad-text-color: #e0e0e0;
+
+            --footer-bg-color: #0f3460;
+            --footer-text-color: #e0e0e0;
+
+            --dropdown-bg-color: #0f3460;
+            --dropdown-text-color: #e0e0e0;
+
+            --switch-bg-color: #555;
+            --switch-handle-color: #eee;
+        }
+
+        /* General Resets and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header and Navigation */
+        .header {
+            background-color: var(--header-bg-color);
+            color: var(--header-text-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--logo-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: var(--nav-link-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dropdown-bg-color);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: var(--dropdown-text-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--primary-color);
+            color: #ffffff; /* Assuming white text on primary color hover */
+            border-radius: 5px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Hamburger Menu (for mobile) */
+        .hamburger {
+            display: none; /* Hidden on desktop */
+            cursor: pointer;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--nav-link-color);
+            transition: all 0.3s ease-in-out;
+        }
+        /* Hamburger animation */
+        .hamburger.is-active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.is-active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.is-active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 20px;
+            margin-bottom: 30px;
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            color: var(--heading-color);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color-light), var(--primary-color-dark));
+            color: #ffffff; /* Explicit white for hero text */
+            text-align: center;
+            padding: 100px 20px;
+            border-radius: 0; /* Full width */
+            box-shadow: none;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .primary-btn:hover {
+            background-color: var(--primary-color-dark);
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+        }
+
+        .secondary-btn:hover {
+            background-color: var(--secondary-color-dark);
+            transform: translateY(-2px);
+        }
+
+        .outline-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .outline-btn:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* Grids (Trending, Blog, Video, Gallery, Tools, Product) */
+        .trending-grid, .blog-grid, .video-grid, .gallery-grid, .tools-grid, .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .trending-item, .blog-post, .video-item, .gallery-item, .tool-item, .product-item {
+            background-color: var(--element-bg-color);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .blog-post img, .trending-item img, .product-item img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .video-item iframe {
+            width: 100%;
+            height: 250px;
+            border-radius: 5px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* News Section */
+        .news-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .news-item {
+            background-color: var(--element-bg-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .news-item h3 {
+            margin-bottom: 10px;
+            color: var(--heading-color);
+        }
+
+        .news-item .news-date {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-muted-color);
+            margin-top: 10px;
+        }
+
+        /* Ad Spaces */
+        .ad-space {
+            background-color: var(--ad-bg-color);
+            border: 1px dashed var(--ad-border-color);
+            color: var(--ad-text-color);
+            text-align: center;
+            padding: 20px;
+            margin: 40px auto;
+            border-radius: 8px;
+            font-style: italic;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .large-ad-space {
+            height: 120px; /* Example for 728x90 */
+            max-width: 728px;
+        }
+
+        .small-ad-space {
+            height: 300px; /* Example for 300x250 */
+            max-width: 300px;
+        }
+
+        .placeholder-ad {
+            background-color: rgba(0,0,0,0.1);
+            color: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9em;
+            border: 1px solid rgba(0,0,0,0.2);
+            margin-top: 10px;
+        }
+        .large-ad-space .placeholder-ad {
+            width: 728px;
+            height: 90px;
+        }
+        .small-ad-space .placeholder-ad {
+            width: 300px;
+            height: 250px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--footer-bg-color);
+            color: var(--footer-text-color);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: var(--footer-text-color);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Dark Mode Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 24px;
+            margin-left: 15px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--switch-bg-color);
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: var(--switch-handle-color);
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(16px);
+            -ms-transform: translateX(16px);
+            transform: translateX(16px);
+        }
+
+        /* Round sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        /* Section visibility toggle */
+        .section-disabled {
+            display: none;
+        }
+
+        .section-enabled {
+            display: block; /* or flex, grid as per layout */
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                display: none; /* Hidden by default on mobile */
+                text-align: center;
+                background-color: var(--header-bg-color);
+                padding-bottom: 15px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                position: absolute;
+                top: 60px; /* Adjust based on header height */
+                left: 0;
+                right: 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block; /* Show hamburger on mobile */
+            }
+
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+            }
+
+            .trending-grid, .blog-grid, .video-grid, .gallery-grid, .tools-grid, .product-grid {
+                grid-template-columns: 1fr; /* Single column on small screens */
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .social-links {
+                margin-top: 15px;
+            }
+
+            .large-ad-space .placeholder-ad {
+                width: 100%; /* Adjust for mobile */
+                height: auto;
+            }
+            .small-ad-space .placeholder-ad {
+                width: 100%; /* Adjust for mobile */
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo">FlexiPro</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Sections <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#blog-section">Blog</a>
+                        <a href="#video-section">Videos</a>
+                        <a href="#image-gallery-section">Gallery</a>
+                        <a href="#tools-section">Tools</a>
+                        <a href="#ecommerce-section">Shop</a>
+                        <a href="#news-section">News</a>
+                    </div>
+                </li>
+                <li><a href="#contact">Contact</a></li>
+                <li><label class="switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider round"></span>
+                </label></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section section-enabled">
+            <div class="hero-content">
+                <h1>Welcome to FlexiPro!</h1>
+                <p>Your ultimate platform for professional content and services.</p>
+                <button class="btn primary-btn">Learn More</button>
+            </div>
+        </section>
+
+        <!-- Trending Section -->
+        <section id="trending-section" class="trending-section section-enabled">
+            <h2>Trending Now</h2>
+            <div class="trending-grid">
+                <!-- Trending item 1 -->
+                <div class="trending-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Trending Image">
+                    <h3>Exciting New Developments</h3>
+                    <p>Discover the latest trends in technology.</p>
+                </div>
+                <!-- Trending item 2 -->
+                <div class="trending-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Trending Image">
+                    <h3>Top Productivity Hacks</h3>
+                    <p>Boost your efficiency with these tips.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Space 1 -->
+        <section class="ad-space large-ad-space section-enabled">
+            <p>Advertisement Here (e.g., Google AdSense)</p>
+            <!-- Your AdSense code will go here -->
+            <div class="placeholder-ad">728x90 Ad</div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog-section" class="blog-section section-disabled">
+            <h2>Latest Blog Posts</h2>
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <article class="blog-post">
+                    <img src="https://via.placeholder.com/400x250" alt="Blog Post Image">
+                    <h3>Title of Blog Post One</h3>
+                    <p>A short excerpt from the blog post. Read more...</p>
+                    <a href="#" class="btn secondary-btn">Read More</a>
+                </article>
+                <!-- Blog Post 2 -->
+                <article class="blog-post">
+                    <img src="https://via.placeholder.com/400x250" alt="Blog Post Image">
+                    <h3>Title of Blog Post Two</h3>
+                    <p>Another interesting excerpt from the second post.</p>
+                    <a href="#" class="btn secondary-btn">Read More</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section id="video-section" class="video-section section-disabled">
+            <h2>Our Videos</h2>
+            <div class="video-grid">
+                <div class="video-item">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <h3>Video Title 1</h3>
+                </div>
+                <div class="video-item">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <h3>Video Title 2</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Gallery Section -->
+        <section id="image-gallery-section" class="image-gallery-section section-disabled">
+            <h2>Image Gallery</h2>
+            <div class="gallery-grid">
+                <img src="https://via.placeholder.com/400x300?text=Image+1" alt="Gallery Image 1" class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=Image+2" alt="Gallery Image 2" class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=Image+3" alt="Gallery Image 3" class="gallery-item">
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools-section" class="tools-section section-disabled">
+            <h2>Online Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-item">
+                    <h3>Tool Name 1</h3>
+                    <p>Description of what this tool does.</p>
+                    <a href="#" class="btn outline-btn">Use Tool</a>
+                </div>
+                <div class="tool-item">
+                    <h3>Tool Name 2</h3>
+                    <p>Another useful tool for your needs.</p>
+                    <a href="#" class="btn outline-btn">Use Tool</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- E-commerce Grid -->
+        <section id="ecommerce-section" class="ecommerce-section section-disabled">
+            <h2>Our Products</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/300x300?text=Product+1" alt="Product 1">
+                    <h3>Product Title 1</h3>
+                    <p class="price">$29.99</p>
+                    <button class="btn primary-btn">Add to Cart</button>
+                </div>
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/300x300?text=Product+2" alt="Product 2">
+                    <h3>Product Title 2</h3>
+                    <p class="price">$49.99</p>
+                    <button class="btn primary-btn">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news-section" class="news-section section-disabled">
+            <h2>Latest News</h2>
+            <div class="news-list">
+                <article class="news-item">
+                    <h3>Breaking News Headline</h3>
+                    <p>A brief summary of the latest news item. <a href="#">Read more...</a></p>
+                    <span class="news-date">July 10, 2025</span>
+                </article>
+                <article class="news-item">
+                    <h3>Local Event Update</h3>
+                    <p>Details about an upcoming local event. <a href="#">Read more...</a></p>
+                    <span class="news-date">July 9, 2025</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- Ad Space 2 -->
+        <section class="ad-space small-ad-space section-enabled">
+            <p>Advertisement Here (e.g., Google AdSense)</p>
+            <!-- Your AdSense code will go here -->
+            <div class="placeholder-ad">300x250 Ad</div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 FlexiPro. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Navigation Toggle ---
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('is-active'); // For animated hamburger
+            });
+
+            // Close nav when a link is clicked (for mobile)
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        hamburger.classList.remove('is-active');
+                    }
+                });
+            });
+
+            // --- Dark Mode Toggle ---
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+
+            // Check for saved dark mode preference
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+
+            darkModeToggle.addEventListener('change', () => {
+                if (darkModeToggle.checked) {
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+
+            // --- Modular Section Toggling (Example for demonstration) ---
+            // In a real application, you might have a more sophisticated UI for this,
+            // or simply uncomment/comment sections in the HTML.
+            // This example demonstrates how you could programmatically toggle them.
+
+            const sectionIds = [
+                'blog-section',
+                'video-section',
+                'image-gallery-section',
+                'tools-section',
+                'ecommerce-section',
+                'news-section'
+            ];
+
+            // Function to toggle a section's visibility
+            function toggleSection(sectionId, enable = true) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    if (enable) {
+                        section.classList.remove('section-disabled');
+                        section.classList.add('section-enabled');
+                    } else {
+                        section.classList.remove('section-enabled');
+                        section.classList.add('section-disabled');
+                    }
+                }
+            }
+
+            // Example: Enable blog and disable video section on load
+            // You would integrate this with a control panel or
+            // adjust initial HTML classes ('section-disabled'/'section-enabled')
+            // toggleSection('blog-section', true);
+            // toggleSection('video-section', false);
+
+            // If you want to make sections togglable via navigation or other controls,
+            // you would add event listeners to those controls.
+            // For instance, clicking a "Blog" link could call toggleSection('blog-section', true);
+            // and hide other content sections.
+        });
+    </script>
+</body>
+</html>
